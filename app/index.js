@@ -1,10 +1,13 @@
 import { View, Image, Text, ScrollView, SafeAreaView } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import Form from "../components/form";
+import Footer from "../components/footer";
+import {initalizeapp} from "firebase/app";
+import {config} from "../firebaseconfig"
 const Home = () => {
   const router = useRouter();
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFF0CE" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <Stack.Screen
         options={{
           headerStyle: { backgroundColor: "#FFC436" },
@@ -20,10 +23,13 @@ const Home = () => {
           headerTitle: "",
         }}
       />
-      <Text>Home</Text>
+      {/* <Text>🍴🍴🍴</Text> */}
       <Form></Form>
+      <Footer></Footer>
     </SafeAreaView>
   );
 };
+
+initalizeapp(config);
 
 export default Home;

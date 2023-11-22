@@ -1,6 +1,17 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import FIREBASE_DB from "../firebaseconfig"; 
 const Form = () => {
+    const handleAddOrder = () => {
+        // Add a new order to the "orders" node in Firebase Realtime Database
+        const newOrderRef = FIREBASE_DB().ref('Orders').push();
+        newOrderRef.set({
+          Food_Name: 'Palak Paneer',
+          Date: 23112023,
+          VG_NG: 'Veg',
+          // Add more order details as needed
+        });
+      };
   return (
     <View
       style={{
@@ -21,7 +32,7 @@ const Form = () => {
           marginTop: 50,
           width: 280,
           height: 50,
-          borderWidth: 1,
+          borderWidth: 0.2,
           borderRadius: 20,
         }}
         placeholder="Food Name"
@@ -32,7 +43,7 @@ const Form = () => {
           marginTop: 50,
           width: 280,
           height: 50,
-          borderWidth: 1,
+          borderWidth:0.2,
           borderRadius: 20,
         }}
         placeholder="Date"
@@ -43,23 +54,25 @@ const Form = () => {
           marginTop: 50,
           width: 280,
           height: 50,
-          borderWidth: 1,
+          borderWidth: 0.2,
           borderRadius: 20,
+          
         }}
-        // placeholderStyle={{ marginTop: 100 }}
         placeholder="Veg OR Non-Veg"
+        
       ></TextInput>
       <TouchableOpacity
         style={{
           marginTop: 50,
-          borderWidth: 2,
+          borderWidth: 1,
           borderRadius: 20,
           width: 150,
           height: 50,
           backgroundColor: "#0174BE",
         }}
+        onPress={handleAddOrder}
       >
-        <Text style={{ flex: 1, alignSelf: "center" }}>Get Me a Tifin</Text>
+        <Text style={{ flex: 1, alignSelf: "center",marginTop:15 }}>Get Me a Tifin</Text>
       </TouchableOpacity>
     </View>
   );
