@@ -2,8 +2,8 @@ import { View, Image, Text, ScrollView, SafeAreaView } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import Form from "../components/form";
 import Footer from "../components/footer";
-import {initalizeapp} from "firebase/app";
-import {config} from "../firebaseconfig"
+// import { initializeApp } from '@react-native-firebase/app';
+// import {c} from "../firebaseconfig"
 const Home = () => {
   const router = useRouter();
   return (
@@ -30,6 +30,5 @@ const Home = () => {
   );
 };
 
-initalizeapp(config);
-
+// initializeApp(config);
 export default Home;

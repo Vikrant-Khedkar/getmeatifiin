@@ -1,17 +1,18 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import React, { useState,useEffect } from "react";
-import FIREBASE_DB from "../firebaseconfig"; 
+import { View, Image,Text, TextInput, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import {FIREBASE_DB} from "../firebaseconfig";
+
 const Form = () => {
-    const handleAddOrder = () => {
-        // Add a new order to the "orders" node in Firebase Realtime Database
-        const newOrderRef = FIREBASE_DB().ref('Orders').push();
-        newOrderRef.set({
-          Food_Name: 'Palak Paneer',
-          Date: 23112023,
-          VG_NG: 'Veg',
-          // Add more order details as needed
-        });
-      };
+  const handleAddOrder = () => {
+    // Add a new order to the "orders" node in Firebase Realtime Database
+    const newOrderRef = FIREBASE_DB.collection("Orders").doc(); // Using doc() to generate a unique ID
+  newOrderRef.set({
+    Food_Name: "Palak Paneer",
+    Date: 23112023,
+    VG_NG: "Veg",
+    // Add more order details as needed
+  });
+  };
   return (
     <View
       style={{
@@ -24,7 +25,11 @@ const Form = () => {
         borderRadius: 20,
       }}
     >
-      <Text>Place your Order😋</Text>
+      <Text style={{marginTop:10}}>Place your Order😋</Text>
+      <Image
+        source={require("../icons/cooking.png")}
+        style={{ marginTop:20,width: 70, height: 70 }}
+      ></Image>
       <TextInput
         style={{
           backgroundColor: "#FFFFFF",
@@ -33,7 +38,7 @@ const Form = () => {
           width: 280,
           height: 50,
           borderWidth: 0.2,
-          borderRadius: 20,
+        //   borderRadius: 20,
         }}
         placeholder="Food Name"
       ></TextInput>
@@ -43,8 +48,8 @@ const Form = () => {
           marginTop: 50,
           width: 280,
           height: 50,
-          borderWidth:0.2,
-          borderRadius: 20,
+          borderWidth: 0.2,
+        //   borderRadius: 20,
         }}
         placeholder="Date"
       ></TextInput>
@@ -55,11 +60,9 @@ const Form = () => {
           width: 280,
           height: 50,
           borderWidth: 0.2,
-          borderRadius: 20,
-          
+        //   borderRadius: 20,
         }}
         placeholder="Veg OR Non-Veg"
-        
       ></TextInput>
       <TouchableOpacity
         style={{
@@ -72,7 +75,9 @@ const Form = () => {
         }}
         onPress={handleAddOrder}
       >
-        <Text style={{ flex: 1, alignSelf: "center",marginTop:15 }}>Get Me a Tifin</Text>
+        <Text style={{ flex: 1, alignSelf: "center", marginTop: 15 }}>
+          Get Me a Tifin
+        </Text>
       </TouchableOpacity>
     </View>
   );
